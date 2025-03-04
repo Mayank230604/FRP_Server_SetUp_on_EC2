@@ -129,7 +129,7 @@ Save (`CTRL + X`, `Y`, `ENTER`).
 ## **4. Running the FRP Server**
 
 ```bash
-./frps -c ./frps.ini
+sudo ./frps -c ./frps.ini
 ```
 
 ---
