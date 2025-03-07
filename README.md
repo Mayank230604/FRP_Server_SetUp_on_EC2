@@ -225,8 +225,10 @@ remote_port = 6000
 ### **Step 2: Start the Client**
 
 ```bash
-./frpc -c ./frpc.ini
+sudo ./frpc -c ./frpc.ini
 ```
+![image](https://github.com/user-attachments/assets/ce509c39-65f8-419a-bc48-157a20cce7e6)
+![image](https://github.com/user-attachments/assets/db312053-97e7-475a-8553-9f1a541d6ee0)
 
 ### **Step 3: SSH via FRP Tunnel**
 
