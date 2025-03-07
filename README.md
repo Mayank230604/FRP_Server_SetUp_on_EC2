@@ -1,4 +1,4 @@
-# **Setting Up an FRP Server on an EC2 Instance**
+![image](https://github.com/user-attachments/assets/84f44d38-8def-4f97-91b1-be524076cf44)# **Setting Up an FRP Server on an EC2 Instance**
 
 This document outlines the steps required to configure and deploy an **FRP (Fast Reverse Proxy) server** on an **Ubuntu-based EC2 instance**.
 
@@ -133,6 +133,7 @@ Save (`CTRL + X`, `Y`, `ENTER`).
 ```bash
 sudo /opt/frp/frps -c /opt/frp/frps.ini
 ```
+![image](https://github.com/user-attachments/assets/e65e0db8-83e4-47dc-aad6-809ec7892a04)
 
 ---
 
