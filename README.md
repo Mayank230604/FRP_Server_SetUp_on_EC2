@@ -13,19 +13,22 @@ Before proceeding, ensure you have the following:
 - Open security group ports (e.g., port 7000 for FRP connections).
 - Familiarity with **Linux** command-line operations.
 
-##
+---
 
-### **Step 1: Launch an EC2 Instance (FRP Instance)**
+## **Step 1: Launch an EC2 Instance (FRP Instance)**
 
 1. **Sign in to AWS Management Console**.
 2. Navigate to **EC2** and select **Launch Instance**.
 3. Choose an **Ubuntu AMI** of your preferred version.
 4. Pick an instance type (e.g., `t2.micro` for free-tier usage).
 5. Configure additional instance settings based on your needs.
+6. Add a key pair to securely connect via SSH.
+7. Assign a security group (you can create a new one or use an existing one).
+8. Click **Launch Instance** and wait for it to be ready.
 
 ---
 
-### **Step 2: Modify Security Group to Open Port 7000**
+## **Step 2: Modify Security Group to Open Port 7000**
 
 To manually update the security group settings:
 
@@ -42,29 +45,28 @@ Next, establish an SSH connection to your EC2 instance.
 
 ---
 
-### **Step 3: Connecting to EC2 via PuTTY**
+## **Step 3: Connecting to EC2 via PuTTY**
 
-1. **Install PuTTY**:  
+1. **Install PuTTY**:\
    If not installed, download PuTTY from [this link](https://www.putty.org/) and install it.
 
-2. **Convert PEM Key to PPK**:
+2. **Convert PEM Key to PPK**:\
    Since PuTTY doesn’t support `.pem` files directly, convert your key to `.ppk`:
 
-   ```bash
-   Open PuTTYgen
-   Load your .pem file
-   Save private key as .ppk
-   ```
+   - Open PuTTYgen
+   - Load your `.pem` file
+   - Save private key as `.ppk`
 
 3. **Retrieve the Public IP Address** of your EC2 instance from the **EC2 Dashboard** under **Instances**.
 
 4. **Launch PuTTY** and enter:
+
    - **Host Name (or IP address)**: *Your EC2 Public IP*
    - **Connection Type**: SSH
    - **Authentication**: Load the `.ppk` file
 
-5. **Initiate SSH Connection**:  
-   Click **Open**, then log in as **`ubuntu`**.
+5. **Initiate SSH Connection**:\
+   Click **Open**, then log in as ``.
 
 ---
 
@@ -129,20 +131,14 @@ Save (`CTRL + X`, `Y`, `ENTER`).
 ## **4. Running the FRP Server**
 
 ```bash
-sudo ./frps -c ./frps.ini
+sudo ./frps -c /opt/frp/frps.ini
 ```
 
 ---
 
 ## **5. Setting Up FRP as a Systemd Service**
 
-### **Step 1: Move Files to System Path**
-
-```bash
-sudo mv frp_0.47.0_linux_amd64 /opt/frp/
-```
-
-### **Step 2: Create a systemd Service File**
+### **Step 1: Create a systemd Service File**
 
 ```bash
 sudo nano /etc/systemd/system/frps.service
@@ -167,7 +163,7 @@ WantedBy=multi-user.target
 
 ---
 
-### **Step 3: Reload and Start FRP Service**
+### **Step 2: Reload and Start FRP Service**
 
 ```bash
 sudo systemctl daemon-reload
@@ -177,13 +173,13 @@ sudo systemctl enable frps
 
 ---
 
-### **Step 4: Verify FRP Service Status**
+### **Step 3: Verify FRP Service Status**
 
 ```bash
 sudo systemctl status frps
 ```
 
-It should display **`active (running)`**.
+It should display ``.
 
 ---
 
@@ -195,9 +191,10 @@ If you enabled the dashboard (`dashboard_port = 7500`), access it via:
 http://<your-ec2-public-ip>:7500
 ```
 
-Login:  
-- **Username**: `admin`  
-- **Password**: `admin`  
+Login:
+
+- **Username**: `admin`
+- **Password**: `admin`
 
 ---
 
